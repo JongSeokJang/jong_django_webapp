@@ -18,6 +18,7 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponse
+from blog.views import *
 
 def hello(request):
     return HttpResponse('''
@@ -27,6 +28,8 @@ def hello(request):
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$' , hello),
+	url(r'^blog/$', post_list),
+	url(r'^blog/(?P<pk>\d+)/$', post_detail),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
